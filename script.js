@@ -240,7 +240,7 @@ function getFilteredProducts() {
 function createProductCard(product) {
   const isWishlisted = state.wishlist.has(product.id);
   const card = document.createElement('article');
-  card.className = 'product-card';
+  card.className = `product-card ${product.color}`;
   card.innerHTML = `
     <div class="product-art ${product.color}">
       <span>${product.icon}</span>
