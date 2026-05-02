@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Store | Apps & Games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Store navigation">
+      <a class="brand" href="#" aria-label="Nexus Store home">
+        <span class="brand-mark">N</span>
+        <span>
+          <strong>Nexus</strong>
+          <small>Apps & Games</small>
+        </span>
+      </a>
+
+      <nav class="nav-list">
+        <a class="nav-link active" href="#featured">
+          <span>Home</span>
+          Discover
+        </a>
+        <a class="nav-link" href="#apps">
+          <span>Apps</span>
+          Apps
+        </a>
+        <a class="nav-link" href="#games">
+          <span>Play</span>
+          Games
+        </a>
+        <a class="nav-link" href="#library">
+          <span>Mine</span>
+          Library
+        </a>
+      </nav>
+
+      <div class="sidebar-card">
+        <p class="eyebrow">Weekly deal</p>
+        <h3>Creator Pro Suite</h3>
+        <p>Save 45% on the ultimate bundle for design, video, and productivity.</p>
+        <button class="text-button" type="button" data-filter-shortcut="Productivity">Explore deal</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <button class="icon-button menu-button" type="button" aria-label="Open menu">Menu</button>
+        <label class="search">
+          <span>Search</span>
+          <input id="searchInput" type="search" placeholder="Search apps, games, tools..." autocomplete="off">
+        </label>
+        <button id="themeToggle" class="icon-button" type="button" aria-label="Toggle dark mode">Dark</button>
+      </header>
+
+      <section id="featured" class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Featured launch</p>
+          <h1>One beautiful store for every app and game you love.</h1>
+          <p>Browse curated tools, premium titles, quick installs, ratings, deals, and your personal library in a front-end-only experience.</p>
+          <div class="hero-actions">
+            <button class="primary-button" type="button" data-filter-shortcut="Game">Browse games</button>
+            <button class="secondary-button" type="button" data-filter-shortcut="App">Browse apps</button>
+          </div>
+        </div>
+        <article class="hero-feature-card">
+          <div class="app-icon gradient-aurora">RA</div>
+          <p class="eyebrow">Editor's choice</p>
+          <h2>Realm Ascenders</h2>
+          <p>Open-world fantasy adventure with co-op quests, seasonal events, and controller support.</p>
+          <div class="meta-row">
+            <span>4.9 stars</span>
+            <span>12 GB</span>
+            <span>Free</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="stats-grid" aria-label="Store highlights">
+        <article>
+          <strong>2.4M+</strong>
+          <span>Active players</span>
+        </article>
+        <article>
+          <strong>18K</strong>
+          <span>Verified apps</span>
+        </article>
+        <article>
+          <strong>98%</strong>
+          <span>Safe downloads</span>
+        </article>
+      </section>
+
+      <section class="toolbar" aria-label="Filter store catalog">
+        <div>
+          <p class="eyebrow">Catalog</p>
+          <h2>Top apps and games</h2>
+        </div>
+        <div class="filters" id="filters" aria-label="Category filters"></div>
+      </section>
+
+      <section id="catalogGrid" class="catalog-grid" aria-live="polite"></section>
+
+      <section id="library" class="library-panel">
+        <div>
+          <p class="eyebrow">Your library</p>
+          <h2>Ready to launch</h2>
+          <p id="libraryEmpty">Install apps or games to add them here.</p>
+        </div>
+        <div id="libraryList" class="library-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="detailsModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-card">
+      <button class="icon-button modal-close" type="button" aria-label="Close details" data-close-modal>x</button>
+      <div id="modalContent"></div>
+    </article>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
