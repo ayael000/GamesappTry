@@ -439,7 +439,7 @@ elements.wishlistButton.addEventListener("click", () => {
 elements.themeToggle.addEventListener("click", () => {
   state.theme = state.theme === "dark" ? "light" : "dark";
   localStorage.setItem("playnestTheme", state.theme);
-  document.body.classList.toggle("dark", state.theme === "dark");
+  document.documentElement.dataset.theme = state.theme;
   elements.themeToggle.textContent = state.theme === "dark" ? "Dark" : "Light";
 });
 
@@ -453,6 +453,6 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeDetails();
 });
 
-document.body.classList.toggle("dark", state.theme === "dark");
+document.documentElement.dataset.theme = state.theme;
 elements.themeToggle.textContent = state.theme === "dark" ? "Dark" : "Light";
 renderAll();

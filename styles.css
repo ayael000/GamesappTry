@@ -669,6 +669,10 @@ select {
   display: none;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 .modal-backdrop {
   position: absolute;
   inset: 0;
