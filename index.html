@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlayNest Store | Apps & Games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#home" aria-label="PlayNest Store home">
+        <span class="brand-mark">PN</span>
+        <span>PlayNest</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navLinks">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="sr-only">Toggle menu</span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#featured">Featured</a>
+        <a href="#catalog">Catalog</a>
+        <a href="#collections">Collections</a>
+        <a href="#deals">Deals</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle dark mode">Dark</button>
+        <button class="pill-button" id="wishlistButton" type="button">
+          Wishlist <span id="wishlistCount">0</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-content">
+        <p class="eyebrow">Apps, games, tools, and entertainment</p>
+        <h1 id="heroTitle">Discover your next favorite download.</h1>
+        <p class="hero-copy">
+          Browse a polished front-end store experience with curated games, productivity apps,
+          ratings, filters, wishlists, and interactive install actions.
+        </p>
+        <form class="hero-search" id="heroSearch">
+          <label class="sr-only" for="searchInput">Search apps and games</label>
+          <input id="searchInput" type="search" placeholder="Search games, apps, studios..." autocomplete="off">
+          <button type="submit">Search</button>
+        </form>
+        <div class="hero-stats" aria-label="Store statistics">
+          <span><strong>120K+</strong> downloads</span>
+          <span><strong>4.8</strong> average rating</span>
+          <span><strong>80+</strong> curated titles</span>
+        </div>
+      </div>
+      <article class="hero-card" aria-label="Featured application">
+        <span class="tag">Editor's Choice</span>
+        <div class="app-icon gradient-a">NS</div>
+        <h2>Neon Sprint</h2>
+        <p>Race through glowing cities in a fast arcade runner with daily challenges.</p>
+        <div class="rating">5 stars <span>4.9</span></div>
+        <button class="primary-action" data-install="1">Install Free</button>
+      </article>
+    </section>
+
+    <section class="section" id="featured">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Featured today</p>
+          <h2>Top picks for every mood</h2>
+        </div>
+        <a class="text-link" href="#catalog">View all</a>
+      </div>
+      <div class="featured-grid" id="featuredGrid"></div>
+    </section>
+
+    <section class="section catalog-section" id="catalog">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Browse store</p>
+          <h2>Apps & games catalog</h2>
+        </div>
+        <div class="sort-control">
+          <label for="sortSelect">Sort by</label>
+          <select id="sortSelect">
+            <option value="featured">Featured</option>
+            <option value="rating">Highest rating</option>
+            <option value="downloads">Most downloaded</option>
+            <option value="name">Name</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="store-layout">
+        <aside class="filters" aria-label="Catalog filters">
+          <h3>Filters</h3>
+          <div class="filter-group">
+            <p>Category</p>
+            <div class="chip-list" id="categoryFilters"></div>
+          </div>
+          <div class="filter-group">
+            <p>Price</p>
+            <label><input type="radio" name="price" value="all" checked> All</label>
+            <label><input type="radio" name="price" value="free"> Free</label>
+            <label><input type="radio" name="price" value="paid"> Paid</label>
+          </div>
+          <div class="filter-group">
+            <p>Minimum rating</p>
+            <input id="ratingRange" type="range" min="0" max="5" value="0" step="0.5">
+            <span id="ratingValue">Any rating</span>
+          </div>
+          <button class="ghost-button" id="clearFilters" type="button">Clear filters</button>
+        </aside>
+
+        <div class="catalog-content">
+          <div class="catalog-toolbar">
+            <p id="resultCount">Showing all items</p>
+            <div class="view-toggle" aria-label="View options">
+              <button type="button" class="active" data-view="grid">Grid</button>
+              <button type="button" data-view="list">List</button>
+            </div>
+          </div>
+          <div class="app-grid" id="appGrid"></div>
+          <div class="empty-state" id="emptyState" hidden>
+            <h3>No matches found</h3>
+            <p>Try a different search term or remove a filter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="collections">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Collections</p>
+          <h2>Handpicked shelves</h2>
+        </div>
+      </div>
+      <div class="collection-grid">
+        <article>
+          <span>01</span>
+          <h3>Indie games with style</h3>
+          <p>Beautiful art direction, clever mechanics, and quick sessions.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Work smarter</h3>
+          <p>Utilities, notes, calendars, and focus tools for your daily routine.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Family friendly</h3>
+          <p>Safe games and learning apps for every screen in the home.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section deals" id="deals">
+      <div>
+        <p class="eyebrow">Weekend deals</p>
+        <h2>Premium apps up to 60% off</h2>
+        <p>Static front-end demo content with working UI interactions and no backend required.</p>
+      </div>
+      <button class="primary-action" data-scroll-catalog>Explore deals</button>
+    </section>
+  </main>
+
+  <div class="modal" id="detailsModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-panel">
+      <button class="modal-close icon-button" type="button" aria-label="Close details" data-close-modal>Close</button>
+      <div id="modalContent"></div>
+    </article>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <footer class="site-footer">
+    <div>
+      <a class="brand" href="#home">
+        <span class="brand-mark">PN</span>
+        <span>PlayNest</span>
+      </a>
+      <p>A front-end-only apps and games store built with HTML, CSS, and JavaScript.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#featured">Featured</a>
+      <a href="#catalog">Catalog</a>
+      <a href="#collections">Collections</a>
+      <a href="#deals">Deals</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
