@@ -221,6 +221,9 @@ function toggleInstall(id) {
   }
   saveLibrary();
   render();
+  if (detailsModal.classList.contains("open")) {
+    openDetails(id);
+  }
 }
 
 function openDetails(id) {
