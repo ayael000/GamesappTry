@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AppVault — Apps & Games Store</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">AppVault</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-view="home">
+        <span class="nav-icon">🏠</span>
+        <span>Home</span>
+      </a>
+      <a href="#" class="nav-item" data-view="apps">
+        <span class="nav-icon">📱</span>
+        <span>Apps</span>
+      </a>
+      <a href="#" class="nav-item" data-view="games">
+        <span class="nav-icon">🎮</span>
+        <span>Games</span>
+      </a>
+      <a href="#" class="nav-item" data-view="top-charts">
+        <span class="nav-icon">📈</span>
+        <span>Top Charts</span>
+      </a>
+      <a href="#" class="nav-item" data-view="categories">
+        <span class="nav-icon">🗂️</span>
+        <span>Categories</span>
+      </a>
+      <a href="#" class="nav-item" data-view="wishlist">
+        <span class="nav-icon">❤️</span>
+        <span>Wishlist</span>
+        <span class="badge" id="wishlist-badge">0</span>
+      </a>
+      <a href="#" class="nav-item" data-view="library">
+        <span class="nav-icon">📚</span>
+        <span>My Library</span>
+        <span class="badge" id="library-badge">0</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+        <span id="theme-icon">☀️</span>
+        <span id="theme-label">Light Mode</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN AREA ===== -->
+  <div class="main-wrapper">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <button class="menu-btn" id="menu-btn" title="Toggle sidebar">☰</button>
+
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="Search apps and games…"
+          autocomplete="off"
+        />
+        <button class="search-clear" id="search-clear" title="Clear">✕</button>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="icon-btn" data-view="wishlist" title="Wishlist">
+          ❤️
+          <span class="topbar-badge" id="topbar-wishlist-badge"></span>
+        </button>
+        <button class="icon-btn" data-view="library" title="Library">
+          📚
+          <span class="topbar-badge" id="topbar-library-badge"></span>
+        </button>
+        <div class="avatar">AV</div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="content" id="main-content">
+
+      <!-- HOME VIEW -->
+      <section class="view active" id="view-home">
+        <!-- Hero Banner -->
+        <div class="hero-slider" id="hero-slider">
+          <div class="hero-slides" id="hero-slides"></div>
+          <div class="hero-dots" id="hero-dots"></div>
+          <button class="hero-arrow hero-prev" id="hero-prev">‹</button>
+          <button class="hero-arrow hero-next" id="hero-next">›</button>
+        </div>
+
+        <!-- Featured Apps -->
+        <section class="section">
+          <div class="section-header">
+            <h2>✨ Featured Apps</h2>
+            <a href="#" class="see-all" data-view="apps">See All</a>
+          </div>
+          <div class="cards-row" id="featured-apps"></div>
+        </section>
+
+        <!-- Featured Games -->
+        <section class="section">
+          <div class="section-header">
+            <h2>🎮 Featured Games</h2>
+            <a href="#" class="see-all" data-view="games">See All</a>
+          </div>
+          <div class="cards-row" id="featured-games"></div>
+        </section>
+
+        <!-- Top Free -->
+        <section class="section">
+          <div class="section-header">
+            <h2>🆓 Top Free</h2>
+            <a href="#" class="see-all" data-view="top-charts">See All</a>
+          </div>
+          <div class="list-items" id="top-free-list"></div>
+        </section>
+
+        <!-- Top Paid -->
+        <section class="section">
+          <div class="section-header">
+            <h2>💎 Top Paid</h2>
+            <a href="#" class="see-all" data-view="top-charts">See All</a>
+          </div>
+          <div class="list-items" id="top-paid-list"></div>
+        </section>
+      </section>
+
+      <!-- APPS VIEW -->
+      <section class="view" id="view-apps">
+        <div class="view-header">
+          <h1>📱 Apps</h1>
+          <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Productivity">Productivity</button>
+            <button class="filter-btn" data-filter="Social">Social</button>
+            <button class="filter-btn" data-filter="Music">Music</button>
+            <button class="filter-btn" data-filter="Photo & Video">Photo & Video</button>
+            <button class="filter-btn" data-filter="Finance">Finance</button>
+            <button class="filter-btn" data-filter="Health">Health</button>
+            <button class="filter-btn" data-filter="Education">Education</button>
+            <button class="filter-btn" data-filter="Utilities">Utilities</button>
+          </div>
+          <div class="sort-row">
+            <label for="apps-sort">Sort by:</label>
+            <select id="apps-sort" class="sort-select">
+              <option value="rating">Top Rated</option>
+              <option value="name">Name A–Z</option>
+              <option value="downloads">Most Downloaded</option>
+              <option value="newest">Newest</option>
+            </select>
+          </div>
+        </div>
+        <div class="cards-grid" id="apps-grid"></div>
+      </section>
+
+      <!-- GAMES VIEW -->
+      <section class="view" id="view-games">
+        <div class="view-header">
+          <h1>🎮 Games</h1>
+          <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Action">Action</button>
+            <button class="filter-btn" data-filter="RPG">RPG</button>
+            <button class="filter-btn" data-filter="Puzzle">Puzzle</button>
+            <button class="filter-btn" data-filter="Strategy">Strategy</button>
+            <button class="filter-btn" data-filter="Racing">Racing</button>
+            <button class="filter-btn" data-filter="Sports">Sports</button>
+            <button class="filter-btn" data-filter="Casual">Casual</button>
+            <button class="filter-btn" data-filter="Simulation">Simulation</button>
+          </div>
+          <div class="sort-row">
+            <label for="games-sort">Sort by:</label>
+            <select id="games-sort" class="sort-select">
+              <option value="rating">Top Rated</option>
+              <option value="name">Name A–Z</option>
+              <option value="downloads">Most Downloaded</option>
+              <option value="newest">Newest</option>
+            </select>
+          </div>
+        </div>
+        <div class="cards-grid" id="games-grid"></div>
+      </section>
+
+      <!-- TOP CHARTS VIEW -->
+      <section class="view" id="view-top-charts">
+        <div class="view-header">
+          <h1>📈 Top Charts</h1>
+          <div class="filters">
+            <button class="filter-btn active" data-chart="free">Top Free</button>
+            <button class="filter-btn" data-chart="paid">Top Paid</button>
+            <button class="filter-btn" data-chart="grossing">Top Grossing</button>
+          </div>
+        </div>
+        <div class="charts-layout">
+          <div class="chart-col">
+            <h3>📱 Apps</h3>
+            <div class="list-items" id="chart-apps-list"></div>
+          </div>
+          <div class="chart-col">
+            <h3>🎮 Games</h3>
+            <div class="list-items" id="chart-games-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORIES VIEW -->
+      <section class="view" id="view-categories">
+        <div class="view-header">
+          <h1>🗂️ Categories</h1>
+        </div>
+        <div class="categories-grid" id="categories-grid"></div>
+      </section>
+
+      <!-- WISHLIST VIEW -->
+      <section class="view" id="view-wishlist">
+        <div class="view-header">
+          <h1>❤️ Wishlist</h1>
+        </div>
+        <div class="cards-grid" id="wishlist-grid"></div>
+        <div class="empty-state" id="wishlist-empty" style="display:none">
+          <span class="empty-icon">💔</span>
+          <p>Your wishlist is empty.</p>
+          <p class="empty-sub">Browse apps and games to add them here.</p>
+          <button class="btn-primary" data-view="home">Browse Store</button>
+        </div>
+      </section>
+
+      <!-- LIBRARY VIEW -->
+      <section class="view" id="view-library">
+        <div class="view-header">
+          <h1>📚 My Library</h1>
+        </div>
+        <div class="cards-grid" id="library-grid"></div>
+        <div class="empty-state" id="library-empty" style="display:none">
+          <span class="empty-icon">📭</span>
+          <p>Your library is empty.</p>
+          <p class="empty-sub">Get apps and games to see them here.</p>
+          <button class="btn-primary" data-view="home">Browse Store</button>
+        </div>
+      </section>
+
+      <!-- SEARCH RESULTS VIEW -->
+      <section class="view" id="view-search">
+        <div class="view-header">
+          <h1>🔍 Search Results</h1>
+          <p id="search-results-label"></p>
+        </div>
+        <div class="cards-grid" id="search-grid"></div>
+        <div class="empty-state" id="search-empty" style="display:none">
+          <span class="empty-icon">🔎</span>
+          <p>No results found.</p>
+          <p class="empty-sub">Try different keywords.</p>
+        </div>
+      </section>
+
+      <!-- DETAIL MODAL -->
+      <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="app-modal">
+          <button class="modal-close" id="modal-close">✕</button>
+          <div class="modal-content" id="modal-content"></div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
