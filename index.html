@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AppVault — Apps & Games Store</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="#" class="logo" onclick="showHome()">
+        <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="10" fill="url(#logoGrad)"/>
+          <path d="M12 20L18 14L24 20L18 26L12 20Z" fill="white" opacity="0.9"/>
+          <path d="M20 12L28 20L20 28L24 20L20 12Z" fill="white"/>
+          <defs>
+            <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#6366f1"/>
+              <stop offset="1" stop-color="#a855f7"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="logo-text">AppVault</span>
+      </a>
+
+      <nav class="nav" id="mainNav">
+        <a href="#" class="nav-link active" data-category="all" onclick="filterCategory('all', this)">All</a>
+        <a href="#" class="nav-link" data-category="apps" onclick="filterCategory('apps', this)">Apps</a>
+        <a href="#" class="nav-link" data-category="games" onclick="filterCategory('games', this)">Games</a>
+        <a href="#" class="nav-link" data-category="productivity" onclick="filterCategory('productivity', this)">Productivity</a>
+        <a href="#" class="nav-link" data-category="entertainment" onclick="filterCategory('entertainment', this)">Entertainment</a>
+        <a href="#" class="nav-link" data-category="education" onclick="filterCategory('education', this)">Education</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16.5 16.5 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search apps & games…" oninput="handleSearch(this.value)" />
+          <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+        </div>
+        <button class="cart-btn" id="cartBtn" onclick="toggleCart()">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE NAV ===== -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#" class="mobile-nav-link active" data-category="all" onclick="filterCategory('all', this); closeMobileNav()">All</a>
+    <a href="#" class="mobile-nav-link" data-category="apps" onclick="filterCategory('apps', this); closeMobileNav()">Apps</a>
+    <a href="#" class="mobile-nav-link" data-category="games" onclick="filterCategory('games', this); closeMobileNav()">Games</a>
+    <a href="#" class="mobile-nav-link" data-category="productivity" onclick="filterCategory('productivity', this); closeMobileNav()">Productivity</a>
+    <a href="#" class="mobile-nav-link" data-category="entertainment" onclick="filterCategory('entertainment', this); closeMobileNav()">Entertainment</a>
+    <a href="#" class="mobile-nav-link" data-category="education" onclick="filterCategory('education', this); closeMobileNav()">Education</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="heroSection">
+    <div class="hero-content">
+      <div class="hero-badge">New arrivals this week</div>
+      <h1 class="hero-title">Discover Amazing<br/><span class="gradient-text">Apps & Games</span></h1>
+      <p class="hero-sub">Explore thousands of apps and games. Install free, or grab your favourites at great prices.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="scrollToStore()">Browse Store</button>
+        <button class="btn btn-ghost" onclick="filterCategory('games', document.querySelector('[data-category=games]'))">Top Games</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>10K+</strong><span>Apps</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>50K+</strong><span>Users</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>4.8★</strong><span>Rating</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-cards">
+        <div class="floating-card fc1">
+          <div class="fc-icon" style="background:linear-gradient(135deg,#6366f1,#818cf8)">🎮</div>
+          <div class="fc-text"><strong>Nebula Wars</strong><span>Strategy · Free</span></div>
+        </div>
+        <div class="floating-card fc2">
+          <div class="fc-icon" style="background:linear-gradient(135deg,#f59e0b,#fcd34d)">⚡</div>
+          <div class="fc-text"><strong>SpeedNote</strong><span>Productivity · Free</span></div>
+        </div>
+        <div class="floating-card fc3">
+          <div class="fc-icon" style="background:linear-gradient(135deg,#10b981,#34d399)">🎵</div>
+          <div class="fc-text"><strong>Wavify</strong><span>Music · $4.99</span></div>
+        </div>
+        <div class="hero-phone">
+          <div class="phone-screen">
+            <div class="phone-status-bar"></div>
+            <div class="phone-app-grid">
+              <div class="phone-app" style="background:linear-gradient(135deg,#6366f1,#a855f7)">🎮</div>
+              <div class="phone-app" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">📸</div>
+              <div class="phone-app" style="background:linear-gradient(135deg,#10b981,#06b6d4)">🎵</div>
+              <div class="phone-app" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)">🏃</div>
+              <div class="phone-app" style="background:linear-gradient(135deg,#ef4444,#f97316)">🔥</div>
+              <div class="phone-app" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">💡</div>
+              <div class="phone-app" style="background:linear-gradient(135deg,#06b6d4,#10b981)">🌍</div>
+              <div class="phone-app" style="background:linear-gradient(135deg,#ec4899,#f43f5e)">❤️</div>
+              <div class="phone-app" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)">⭐</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED BANNER ===== -->
+  <section class="featured-section" id="featuredSection">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Featured <span class="gradient-text">This Week</span></h2>
+        <p class="section-sub">Hand-picked by our editorial team</p>
+      </div>
+      <div class="featured-slider" id="featuredSlider">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STORE GRID ===== -->
+  <section class="store-section" id="storeSection">
+    <div class="container">
+      <!-- Toolbar -->
+      <div class="store-toolbar">
+        <div class="toolbar-left">
+          <h2 class="section-title" id="storeHeading">All Apps & Games</h2>
+          <span class="results-count" id="resultsCount"></span>
+        </div>
+        <div class="toolbar-right">
+          <div class="filter-group">
+            <button class="filter-chip active" data-price="all" onclick="filterPrice('all', this)">All</button>
+            <button class="filter-chip" data-price="free" onclick="filterPrice('free', this)">Free</button>
+            <button class="filter-chip" data-price="paid" onclick="filterPrice('paid', this)">Paid</button>
+          </div>
+          <select class="sort-select" id="sortSelect" onchange="handleSort(this.value)">
+            <option value="featured">Featured</option>
+            <option value="rating">Top Rated</option>
+            <option value="newest">Newest</option>
+            <option value="price-asc">Price: Low–High</option>
+            <option value="price-desc">Price: High–Low</option>
+            <option value="name">A–Z</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="apps-grid" id="appsGrid">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="emptyState" style="display:none">
+        <div class="empty-icon">🔍</div>
+        <h3>No results found</h3>
+        <p>Try a different search term or category.</p>
+        <button class="btn btn-primary" onclick="resetAll()">Clear Filters</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CART SIDEBAR ===== -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="close-btn" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <!-- Injected by JS -->
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">$0.00</strong>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="checkout()">Checkout</button>
+      <button class="btn btn-ghost btn-full" onclick="clearCart()">Clear Cart</button>
+    </div>
+  </aside>
+
+  <!-- ===== DETAIL MODAL ===== -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+  <div class="modal" id="appModal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-content" id="modalContent">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo" onclick="showHome()">
+            <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="10" fill="url(#logoGrad2)"/>
+              <path d="M12 20L18 14L24 20L18 26L12 20Z" fill="white" opacity="0.9"/>
+              <path d="M20 12L28 20L20 28L24 20L20 12Z" fill="white"/>
+              <defs>
+                <linearGradient id="logoGrad2" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#6366f1"/>
+                  <stop offset="1" stop-color="#a855f7"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span class="logo-text">AppVault</span>
+          </a>
+          <p class="footer-tagline">Your ultimate destination for apps and games.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Store</h4>
+          <a href="#" onclick="filterCategory('apps', null)">Apps</a>
+          <a href="#" onclick="filterCategory('games', null)">Games</a>
+          <a href="#" onclick="filterCategory('productivity', null)">Productivity</a>
+          <a href="#" onclick="filterCategory('entertainment', null)">Entertainment</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">Blog</a>
+          <a href="#">Press</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Contact</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 AppVault Inc. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Discord">💬</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
