@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AppVault — Apps &amp; Games Store</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ─── SIDEBAR ─────────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">AppVault</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-section="home">
+        <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V21H15v-6H9v6H3z"/></svg>
+        Home
+      </button>
+      <button class="nav-item" data-section="apps">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="9" height="9" rx="2"/><rect x="13" y="2" width="9" height="9" rx="2"/><rect x="2" y="13" width="9" height="9" rx="2"/><rect x="13" y="13" width="9" height="9" rx="2"/></svg>
+        Apps
+      </button>
+      <button class="nav-item" data-section="games">
+        <svg viewBox="0 0 24 24"><path d="M21 6H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"/><path d="M7 12h4M9 10v4"/><circle cx="15.5" cy="11.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="13.5" r=".5" fill="currentColor"/></svg>
+        Games
+      </button>
+      <button class="nav-item" data-section="top-charts">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Top Charts
+      </button>
+      <button class="nav-item" data-section="categories">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h6"/></svg>
+        Categories
+      </button>
+      <button class="nav-item" data-section="wishlist">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Wishlist
+        <span class="badge wishlist-badge" id="wishlist-badge">0</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-avatar">
+        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=AppVault" alt="User" />
+      </div>
+      <div class="user-info">
+        <span class="user-name">Alex Johnson</span>
+        <span class="user-role">Premium</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ─── MAIN ─────────────────────────────────────────────────── -->
+  <main class="main-content">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search apps, games…" autocomplete="off" />
+        <button class="search-clear" id="search-clear" aria-label="Clear search">✕</button>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn cart-btn" id="cart-btn" title="Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="badge cart-count" id="cart-count">0</span>
+        </button>
+        <button class="icon-btn notif-btn" title="Notifications">
+          <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="badge">3</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- SEARCH RESULTS (hidden by default) -->
+    <section class="section search-results-section hidden" id="search-results-section">
+      <h2 class="section-title">Search Results <span id="search-query-label"></span></h2>
+      <div class="app-grid" id="search-results-grid"></div>
+      <p class="empty-state hidden" id="search-empty">No results found. Try a different keyword.</p>
+    </section>
+
+    <!-- HOME SECTION -->
+    <section class="section" id="section-home">
+
+      <!-- HERO BANNER -->
+      <div class="hero-carousel" id="hero-carousel">
+        <div class="hero-slides" id="hero-slides"></div>
+        <div class="hero-dots" id="hero-dots"></div>
+        <button class="hero-arrow left" id="hero-prev">&#8592;</button>
+        <button class="hero-arrow right" id="hero-next">&#8594;</button>
+      </div>
+
+      <!-- FEATURED APPS -->
+      <div class="section-header">
+        <h2 class="section-title">Featured Apps</h2>
+        <button class="see-all-btn" data-section="apps">See All</button>
+      </div>
+      <div class="app-row" id="featured-apps-row"></div>
+
+      <!-- FEATURED GAMES -->
+      <div class="section-header">
+        <h2 class="section-title">Featured Games</h2>
+        <button class="see-all-btn" data-section="games">See All</button>
+      </div>
+      <div class="app-row" id="featured-games-row"></div>
+
+      <!-- TOP FREE -->
+      <div class="section-header">
+        <h2 class="section-title">Top Free</h2>
+        <button class="see-all-btn" data-section="top-charts">See All</button>
+      </div>
+      <div class="top-list" id="top-free-list"></div>
+
+      <!-- EDITORS CHOICE -->
+      <div class="section-header">
+        <h2 class="section-title">Editor's Choice</h2>
+      </div>
+      <div class="editors-grid" id="editors-choice-grid"></div>
+
+    </section>
+
+    <!-- APPS SECTION -->
+    <section class="section hidden" id="section-apps">
+      <div class="section-header">
+        <h2 class="section-title">Apps</h2>
+        <div class="filter-group">
+          <select class="filter-select" id="apps-sort">
+            <option value="featured">Featured</option>
+            <option value="rating">Top Rated</option>
+            <option value="downloads">Most Downloaded</option>
+            <option value="newest">Newest</option>
+            <option value="name">Name A–Z</option>
+          </select>
+          <select class="filter-select" id="apps-category">
+            <option value="all">All Categories</option>
+            <option value="productivity">Productivity</option>
+            <option value="social">Social</option>
+            <option value="finance">Finance</option>
+            <option value="music">Music</option>
+            <option value="photo">Photo & Video</option>
+            <option value="news">News</option>
+            <option value="health">Health & Fitness</option>
+            <option value="education">Education</option>
+            <option value="utility">Utilities</option>
+          </select>
+        </div>
+      </div>
+      <div class="app-grid" id="apps-grid"></div>
+    </section>
+
+    <!-- GAMES SECTION -->
+    <section class="section hidden" id="section-games">
+      <div class="section-header">
+        <h2 class="section-title">Games</h2>
+        <div class="filter-group">
+          <select class="filter-select" id="games-sort">
+            <option value="featured">Featured</option>
+            <option value="rating">Top Rated</option>
+            <option value="downloads">Most Downloaded</option>
+            <option value="newest">Newest</option>
+            <option value="name">Name A–Z</option>
+          </select>
+          <select class="filter-select" id="games-category">
+            <option value="all">All Genres</option>
+            <option value="action">Action</option>
+            <option value="rpg">RPG</option>
+            <option value="puzzle">Puzzle</option>
+            <option value="strategy">Strategy</option>
+            <option value="sports">Sports</option>
+            <option value="racing">Racing</option>
+            <option value="adventure">Adventure</option>
+            <option value="simulation">Simulation</option>
+            <option value="casual">Casual</option>
+          </select>
+        </div>
+      </div>
+      <div class="app-grid" id="games-grid"></div>
+    </section>
+
+    <!-- TOP CHARTS SECTION -->
+    <section class="section hidden" id="section-top-charts">
+      <h2 class="section-title">Top Charts</h2>
+      <div class="charts-tabs">
+        <button class="chart-tab active" data-tab="free">Top Free</button>
+        <button class="chart-tab" data-tab="paid">Top Paid</button>
+        <button class="chart-tab" data-tab="grossing">Top Grossing</button>
+      </div>
+      <div class="charts-columns">
+        <div class="chart-column">
+          <h3>Apps</h3>
+          <div class="top-list" id="chart-apps-list"></div>
+        </div>
+        <div class="chart-column">
+          <h3>Games</h3>
+          <div class="top-list" id="chart-games-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES SECTION -->
+    <section class="section hidden" id="section-categories">
+      <h2 class="section-title">Browse Categories</h2>
+      <div class="categories-grid" id="categories-grid"></div>
+    </section>
+
+    <!-- WISHLIST SECTION -->
+    <section class="section hidden" id="section-wishlist">
+      <h2 class="section-title">My Wishlist</h2>
+      <div class="app-grid" id="wishlist-grid"></div>
+      <p class="empty-state hidden" id="wishlist-empty">Your wishlist is empty. ♡ an app to add it here.</p>
+    </section>
+
+  </main>
+
+  <!-- ─── APP DETAIL MODAL ─────────────────────────────────────── -->
+  <div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal" id="app-modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div class="modal-hero" id="modal-hero"></div>
+      <div class="modal-body">
+        <div class="modal-header-row">
+          <img class="modal-icon" id="modal-icon" src="" alt="" />
+          <div class="modal-title-block">
+            <h2 class="modal-app-name" id="modal-app-name"></h2>
+            <p class="modal-developer" id="modal-developer"></p>
+            <div class="modal-badges" id="modal-badges"></div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn-get" id="modal-get-btn"></button>
+            <button class="btn-wishlist-modal" id="modal-wishlist-btn" title="Wishlist">♡</button>
+          </div>
+        </div>
+        <div class="modal-stats">
+          <div class="stat"><span class="stat-val" id="modal-rating"></span><span class="stat-lbl">Rating</span></div>
+          <div class="stat-div"></div>
+          <div class="stat"><span class="stat-val" id="modal-downloads"></span><span class="stat-lbl">Downloads</span></div>
+          <div class="stat-div"></div>
+          <div class="stat"><span class="stat-val" id="modal-size"></span><span class="stat-lbl">Size</span></div>
+          <div class="stat-div"></div>
+          <div class="stat"><span class="stat-val" id="modal-age"></span><span class="stat-lbl">Age</span></div>
+        </div>
+        <div class="screenshots-row" id="modal-screenshots"></div>
+        <div class="modal-section">
+          <h3>About</h3>
+          <p id="modal-description"></p>
+        </div>
+        <div class="modal-section">
+          <h3>What's New</h3>
+          <p id="modal-whats-new"></p>
+        </div>
+        <div class="modal-section">
+          <h3>Ratings &amp; Reviews</h3>
+          <div class="reviews-summary">
+            <div class="big-rating" id="modal-big-rating"></div>
+            <div class="stars-bars" id="modal-stars-bars"></div>
+          </div>
+          <div class="reviews-list" id="modal-reviews-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── CART DRAWER ───────────────────────────────────────────── -->
+  <div class="drawer-overlay hidden" id="drawer-overlay"></div>
+  <aside class="cart-drawer hidden" id="cart-drawer">
+    <div class="drawer-header">
+      <h2>Cart</h2>
+      <button class="modal-close" id="cart-close">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer" id="cart-footer">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <button class="btn-checkout" id="checkout-btn">Checkout</button>
+    </div>
+    <p class="empty-state hidden" id="cart-empty">Your cart is empty.</p>
+  </aside>
+
+  <!-- ─── TOAST ─────────────────────────────────────────────────── -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
